@@ -1,0 +1,29 @@
+{
+  "name": "swig-precompile-brunch",
+  "version": "0.0.1",
+  "description": "Compiles Swig templates for brunch.",
+  "author": {
+    "name": "Jean-François Dusariez"
+  },
+  "homepage": "https://github.com/AntiheroSoftware/swig-precompile-brunch",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:AntiheroSoftware/swig-precompile-brunch"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "swig": "*"
+  },
+  "_npmVersion": "0.0.1",
+  "_npmUser": {
+    "name": "lintbe",
+    "email": "jfdusar@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "lintbe",
+      "email": "jfdusar@gmail.com"
+    }
+  ],
+  "directories": {}
+}
