@@ -20,16 +20,12 @@
             // check for extends
             var match = data.match(/extends '([a-zA-Z\/\.]*)'/i);
             if(match && match[1]) {
-                console.log("MATCH extends");
-                console.log(match);
                 dependencies.push("app/"+match[1]+".html");
             }
 
             // check for includes
             var re = /include '([a-zA-Z\/\.]*)'/ig;
             while (match = re.exec(data)) {
-                console.log("MATCH include");
-                console.log(match);
                 dependencies.push("app/"+match[1]+".html");
             }
 
