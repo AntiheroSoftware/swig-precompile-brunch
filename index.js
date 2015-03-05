@@ -29,6 +29,12 @@
                 dependencies.push("app/"+match[1]+".html");
             }
 
+            // check for imports
+            var re = /import '([a-zA-Z\/\.]*)'/ig;
+            while (match = re.exec(data)) {
+                dependencies.push("app/"+match[1]+".html");
+            }
+
             callback(null, dependencies);
         };
 
