@@ -2,6 +2,7 @@
     var SwigCompiler, fs, swig, sysPath;
 
     fs = require("fs");
+    sysPath = require("path");
     swig = require('swig');
 
     module.exports = SwigCompiler = (function() {
@@ -16,23 +17,33 @@
 
         SwigCompiler.prototype.getDependencies = function(data, path, callback) {
             var dependencies = [];
+            var dependency = "";
 
             // check for extends
-            var match = data.match(/extends '([a-zA-Z\/\.]*)'/i);
+            var match = data.match(/extends ['"]([a-zA-Z\/\.]*)['"]/i);
             if(match && match[1]) {
-                dependencies.push("app/"+match[1]+".html");
+                dependency = sysPath.resolve(sysPath.dirname("/" + path), match[1]).substr(1)
+                if(dependencies.indexOf(dependency) === -1) {
+                    dependencies.push(dependency);
+                }
             }
 
             // check for includes
-            var re = /include '([a-zA-Z\/\.]*)'/ig;
+            var re = /include ['"]([a-zA-Z\/\.]*)['"]/ig;
             while (match = re.exec(data)) {
-                dependencies.push("app/"+match[1]+".html");
+                dependency = sysPath.resolve(sysPath.dirname("/" + path), match[1]).substr(1)
+                if(dependencies.indexOf(dependency) === -1) {
+                    dependencies.push(dependency);
+                }
             }
 
             // check for imports
-            var re = /import '([a-zA-Z\/\.]*)'/ig;
+            var re = /import ['"]([a-zA-Z\/\.]*)['"]/ig;
             while (match = re.exec(data)) {
-                dependencies.push("app/"+match[1]+".html");
+                dependency = sysPath.resolve(sysPath.dirname("/" + path), match[1]).substr(1)
+                if(dependencies.indexOf(dependency) === -1) {
+                    dependencies.push(dependency);
+                }
             }
 
             callback(null, dependencies);
