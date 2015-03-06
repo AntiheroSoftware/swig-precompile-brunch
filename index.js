@@ -13,7 +13,7 @@
 
         SwigCompiler.prototype.type = 'template';
 
-        SwigCompiler.prototype.extension = 'html';
+        SwigCompiler.prototype.extension = 'swig|html';
 
         SwigCompiler.prototype.getDependencies = function(data, path, callback) {
             var dependencies = [];
